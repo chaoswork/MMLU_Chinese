@@ -19,9 +19,10 @@
 |--------------| ---- |------------|------|--------|
 | LLaMA        | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_llama.py -m decapoda-research/llama-7b-hf -s llama_result |0.28|0.297|
 | Bloomz        | ✅  | CUDA_VISIBLE_DEVICES=0 python evaluate_bloomz.py -m bigscience/bloomz-7b1-mt -s bloom_result |0.345|0.362|
-| ChatGLM      | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_chatglm.py -m THUDM/chatglm-6b -s chatglm_result |0.3|0.310|
+| ChatGLM      | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_chatglm.py -m THUDM/chatglm-6b -s chatglm_result |0.321|0.310|
 
 - LLaMA模型目前还未放入transformer的主干，可以使用 [zphang的版本](https://github.com/zphang/transformers/tree/llama_push)
+- LLaMA由于没有经过指令微调，且本身训练语料中文较少，所以可能效果差一些。
 
 # 当前问题
 
