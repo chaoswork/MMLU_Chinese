@@ -1,8 +1,8 @@
-# MMLU-Chinese(Measuring Massive Multitask Language Understanding中文翻译版)
+# MMLU-Chinese(Measuring Massive Multitask Language Understanding 中文翻译版)
 
-最近大模型能力的测评越来越重要，其中MMLU是一个很关键的数据集合。但是其只能提供英文的测评，如果测试想测试中文的能力怎么办？我这里给出了一个很取巧的方案，就是将MMLU的问题和答案翻译成中文，这样就可以测试中文大模型的能力。
+最近大模型能力的测评越来越重要，其中MMLU是一个很关键的数据集合。但是MMLU只能提供英文的测评，如果测试想测试中文的能力怎么办？我这里给出了一个很取巧的方案，就是将MMLU的问题和答案翻译成中文，这样就可以测试中文大模型的能力。
 
-# 注意
+# ⚠️ 注意
 
 - 本项目还比较粗糙，测评得分仅供参考。
 
@@ -12,25 +12,33 @@
 - Fewshot的数量: 57 * 5。目前已经整理完成
 - 测试问题数量: 57 * 10。目前每个类别的问题只完成了10个，每个类别的问题100-200个不等。所以目前只完成了其中一小部分。
 
-## Models support matrix
+# Models support matrix
 
-### Causal Language Modeling
-| Model        | Support | 执行命令| score |
-|--------------| ---- |------------|------|
-| LLaMA        | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_llama.py -m decapoda-research/llama-7b-hf -s bloom_result |0.28|
-| Bloomz        | ✅  | CUDA_VISIBLE_DEVICES=0 python evaluate_bloom.py -m bigscience/bloomz-7b1-mt -s bloom_result |0.345|
-| ChatGLM      | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_chatglm.py -m THUDM/chatglm-6b -s chatglm_result |0.3|
+## 目前支持如下的模型
+| Model        | Support | 执行命令| score(English prompt) | score(中文Prompt)
+|--------------| ---- |------------|------|--------|
+| LLaMA        | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_llama.py -m decapoda-research/llama-7b-hf -s llama_result |0.28|0.297|
+| Bloomz        | ✅  | CUDA_VISIBLE_DEVICES=0 python evaluate_bloomz.py -m bigscience/bloomz-7b1-mt -s bloom_result |0.345|0.362|
+| ChatGLM      | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_chatglm.py -m THUDM/chatglm-6b -s chatglm_result |0.3|0.310|
+
+- LLaMA模型目前还未放入transformer的主干，可以使用 [zphang的版本](https://github.com/zphang/transformers/tree/llama_push)
 
 # 当前问题
 
 - 由于是机翻+个人翻译，加上很多领域并不熟悉，所以可能会有错误。如果有错误欢迎指出。
 
-## TODO
+# TODO
 
 1. 翻译更多的问题
 2. 多卡支持
 
+# 交流
 
+可关注下面公众号，回复"交流群"进群
+
+[](./images/qrcode.jpg)
+
+# 下面是Fork前的内容, 主要针对英文
 This is the repository for [Measuring Massive Multitask Language Understanding](https://arxiv.org/pdf/2009.03300) by
 [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/), [Collin Burns](http://collinpburns.com), [Steven Basart](https://stevenbas.art), [Andy Zou](https://andyzoujm.github.io/), Mantas Mazeika, [Dawn Song](https://people.eecs.berkeley.edu/~dawnsong/), and [Jacob Steinhardt](https://www.stat.berkeley.edu/~jsteinhardt/) (ICLR 2021).
 
@@ -59,6 +67,19 @@ Results of the test:
 
 
 ## Citation
+
+Please cite us when using our code, data or model.
+
+```
+@misc{MMLU_Chinese,
+  author = {Huang Chao},
+  title = {Measuring Massive Multitask Language Understanding in Chinese},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/chaoswork/MMLU_Chinese}},
+}
+```
 
 If you find this useful in your research, please consider citing the test and also the [ETHICS](https://arxiv.org/abs/2008.02275) dataset it draws from:
 

@@ -105,8 +105,11 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 def main(args):
 
     model = ChatGLMForConditionalGeneration.from_pretrained(
-            args.model, torch_dtype=torch.float16).cuda()
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
+            args.model, torch_dtype=torch.float16,
+            trust_remote_code=True,
+            torch_dtype=torch.float16).cuda()
+    tokenizer = AutoTokenizer.from_pretrained(
+            args.model, trust_remote_code=True)
     # heads_per_gpu = len(model.encoder.block) // args.ngpu
     # device_map = {
     #     gpu: list(

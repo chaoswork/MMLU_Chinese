@@ -103,8 +103,10 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 
 def main(args):
 
-    model = AutoModelForCausalLM.from_pretrained(args.model).cuda()
-    tokenizer = LlamaTokenizer.from_pretrained(args.model)
+    model = AutoModelForCausalLM.from_pretrained(
+            args.model, trust_remote_code=True).cuda()
+    tokenizer = LlamaTokenizer.from_pretrained(
+            args.model, trust_remote_code=True)
     # heads_per_gpu = len(model.encoder.block) // args.ngpu
     # device_map = {
     #     gpu: list(

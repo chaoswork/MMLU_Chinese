@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from categories import subcategories, categories
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForCausalLM
 import time
 
 choices = ["A", "B", "C", "D"]
@@ -102,8 +103,10 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 
 def main(args):
 
-    model = AutoModelForCausalLM.from_pretrained(args.model).cuda()
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    model = AutoModelForCausalLM.from_pretrained(
+            args.model, trust_remote_code=True).cuda()
+    tokenizer = AutoTokenizer.from_pretrained(
+            args.model, trust_remote_code=True)
     # heads_per_gpu = len(model.encoder.block) // args.ngpu
     # device_map = {
     #     gpu: list(
