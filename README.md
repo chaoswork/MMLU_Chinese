@@ -36,7 +36,7 @@
 
 可关注下面公众号，回复"交流群"进群
 
-[](./images/qrcode.jpg)
+![](./images/qrcode.jpg)
 
 # 下面是Fork前的内容, 主要针对英文
 This is the repository for [Measuring Massive Multitask Language Understanding](https://arxiv.org/pdf/2009.03300) by

@@ -105,7 +105,7 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 def main(args):
 
     model = ChatGLMForConditionalGeneration.from_pretrained(
-            args.model, torch_dtype=torch.float16,
+            args.model,
             trust_remote_code=True,
             torch_dtype=torch.float16).cuda()
     tokenizer = AutoTokenizer.from_pretrained(
