@@ -6,6 +6,7 @@ import pandas as pd
 from categories import subcategories, categories
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from transformers import LlamaTokenizer, AutoModelForCausalLM
+from modeling_chatglm import ChatGLMForConditionalGeneration
 import time
 
 choices = ["A", "B", "C", "D"]
@@ -73,12 +74,12 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
             torch.nn.functional.softmax(
                 torch.tensor(
                     [
-                        logits[tokenizer("A").input_ids[-1]],
-                        logits[tokenizer("B").input_ids[-1]],
-                        logits[tokenizer("C").input_ids[-1]],
-                        logits[tokenizer("D").input_ids[-1]],
+                        logits[tokenizer("A").input_ids[0]],
+                        logits[tokenizer("B").input_ids[0]],
+                        logits[tokenizer("C").input_ids[0]],
+                        logits[tokenizer("D").input_ids[0]],
                     ]
-                ),
+                ).to(torch.float32),
                 dim=0,
             )
             .detach()
@@ -103,8 +104,9 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 
 def main(args):
 
-    model = AutoModelForCausalLM.from_pretrained(args.model).cuda()
-    tokenizer = LlamaTokenizer.from_pretrained(args.model)
+    model = ChatGLMForConditionalGeneration.from_pretrained(
+            args.model, torch_dtype=torch.float16).cuda()
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
     # heads_per_gpu = len(model.encoder.block) // args.ngpu
     # device_map = {
     #     gpu: list(

@@ -2,6 +2,10 @@
 
 最近大模型能力的测评越来越重要，其中MMLU是一个很关键的数据集合。但是其只能提供英文的测评，如果测试想测试中文的能力怎么办？我这里给出了一个很取巧的方案，就是将MMLU的问题和答案翻译成中文，这样就可以测试中文大模型的能力。
 
+# 注意
+
+- 本项目还比较粗糙，测评得分仅供参考。
+
 ## 目前的进度：
 
 - 一共有57个类别。
@@ -11,11 +15,11 @@
 ## Models support matrix
 
 ### Causal Language Modeling
-| Model        | 支持测评 |
-|--------------| ---- |
-| Bloom        | ✅  |
-| LLaMA        | ✅  |
-| ChatGLM      | ✅  |
+| Model        | Support | 执行命令| score |
+|--------------| ---- |------------|------|
+| LLaMA        | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_llama.py -m decapoda-research/llama-7b-hf -s bloom_result |0.28|
+| Bloomz        | ✅  | CUDA_VISIBLE_DEVICES=0 python evaluate_bloom.py -m bigscience/bloomz-7b1-mt -s bloom_result |0.345|
+| ChatGLM      | ✅  |CUDA_VISIBLE_DEVICES=0 python evaluate_chatglm.py -m THUDM/chatglm-6b -s chatglm_result |0.3|
 
 # 当前问题
 
