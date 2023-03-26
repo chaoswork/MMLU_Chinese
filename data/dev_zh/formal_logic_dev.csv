@@ -1,0 +1,7 @@
+请选择最佳的命题逻辑翻译：No people drive on Mars.,~Pd,(∀x)(Px ∨ ~Dx),(∀x)(Px ⊃ ~Dx),~Dp,C
+,,,,,
+最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。,最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。,最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。,最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。,最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。,最佳的命题逻辑翻译为：~Dx，其中x表示在火星上行驶。 可以进一步解释为：对于任意的x，如果x是人，那么x就不会在火星上行驶。或者说，如果x在火星上行驶，那么x不可能是人。
+" Construct a complete truth table for the following pairs of propositions. Then, using the truth tables, determine whether the statements are logically equivalent or contradictory. If neither, determine whether they are consistent or inconsistent. Justify your answers.
+E ⊃ (F · E) and ~E · F",Logically equivalent,Contradictory,"Neither logically equivalent nor contradictory, but consistent",Inconsistent,C
+" Which of the given formulas of PL is the best symbolization of the following sentence?
+Turtles live long lives and are happy creatures, unless they are injured.",(L • H) ≡ I,(L • H) ∨ I,L • (H ∨ I),L • (H ⊃ R),B

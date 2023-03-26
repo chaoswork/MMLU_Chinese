@@ -1,4 +1,24 @@
-# Measuring Massive Multitask Language Understanding
+# MMLU-Chinese(Measuring Massive Multitask Language Understanding中文翻译版)
+
+最近大模型能力的测评越来越重要，其中MMLU是一个很关键的数据集合。但是其只能提供英文的测评，如果测试想测试中文的能力怎么办？我这里给出了一个很取巧的方案，就是将MMLU的问题和答案翻译成中文，这样就可以测试中文大模型的能力。
+
+## 目前的进度：
+
+- 一共有57个类别。
+- Fewshot的数量: 57 * 5。目前已经整理完成
+- 测试问题数量: 57 * 10。目前每个类别的问题只完成了10个，每个类别的问题100-200个不等。所以目前只完成了其中一小部分。
+
+## Models support matrix
+
+### Causal Language Modeling
+| Model        | 支持测评 |
+|--------------| ---- |
+| Bloom        | ✅  |
+| LLaMA        | ✅  |
+| ChatGLM      | ✅  |
+
+
+
 This is the repository for [Measuring Massive Multitask Language Understanding](https://arxiv.org/pdf/2009.03300) by
 [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/), [Collin Burns](http://collinpburns.com), [Steven Basart](https://stevenbas.art), [Andy Zou](https://andyzoujm.github.io/), Mantas Mazeika, [Dawn Song](https://people.eecs.berkeley.edu/~dawnsong/), and [Jacob Steinhardt](https://www.stat.berkeley.edu/~jsteinhardt/) (ICLR 2021).
 
