@@ -36,7 +36,7 @@ def gen_prompt(train_df, subject, k=-1):
     )
     if k == -1:
         k = train_df.shape[0]
-    for i in range(k):
+    for i in range(min(k, train_df.shape[0])):
         prompt += format_example(train_df, i)
     return prompt
 
@@ -64,9 +64,9 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 
         label = test_df.iloc[i, test_df.shape[1] - 1]
 
-        logits = model(
+        logits = model.forward(
             input_ids=input_ids
-            ).logits[:,-1,:]
+            ).logits[:,-1,:].flatten()
 
         probs = (
             torch.nn.functional.softmax(
@@ -85,6 +85,7 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
             .numpy()
         )
         pred = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(probs)]
+        print(f'label = [{label}], f'pred = [{pred}]', f'probs = {probs}')
 
         cor = pred == label
         cors.append(cor)
@@ -101,7 +102,7 @@ def eval(args, subject, model, tokenizer, dev_df, test_df):
 
 def main(args):
 
-    model = AutoModelForCausalLM.from_pretrained(args.model)
+    model = AutoModelForCausalLM.from_pretrained(args.model).cuda()
     tokenizer = LlamaTokenizer.from_pretrained(args.model)
     # heads_per_gpu = len(model.encoder.block) // args.ngpu
     # device_map = {
@@ -135,12 +136,13 @@ def main(args):
     cat_cors = {cat: [] for cat in categories}
 
     for subject in subjects:
+        print(f'{subject} metric')
         dev_df = pd.read_csv(
             os.path.join(args.data_dir, "dev_zh", subject + "_dev.csv"), header=None
-        )[: args.ntrain]
+        )[: args.ntrain].dropna()
         test_df = pd.read_csv(
             os.path.join(args.data_dir, "test_zh", subject + "_test.csv"), header=None
-        )
+        ).dropna()
 
         cors, acc, probs = eval(args, subject, model, tokenizer, dev_df, test_df)
         subcats = subcategories[subject]

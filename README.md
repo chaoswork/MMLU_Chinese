@@ -17,6 +17,14 @@
 | LLaMA        | ✅  |
 | ChatGLM      | ✅  |
 
+# 当前问题
+
+- 由于是机翻+个人翻译，加上很多领域并不熟悉，所以可能会有错误。如果有错误欢迎指出。
+
+## TODO
+
+1. 翻译更多的问题
+2. 多卡支持
 
 
 This is the repository for [Measuring Massive Multitask Language Understanding](https://arxiv.org/pdf/2009.03300) by
